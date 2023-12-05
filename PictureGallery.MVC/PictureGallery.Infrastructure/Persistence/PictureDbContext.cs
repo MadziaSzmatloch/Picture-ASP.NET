@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PictureGallery.Infrastructure.Persistence
 {
-    public class PictureGalleryDbContext : DbContext
+    public class PictureDbContext : DbContext
     {
-        public PictureGalleryDbContext(DbContextOptions<PictureGalleryDbContext> options) : base(options)
+        public PictureDbContext(DbContextOptions<PictureDbContext> options) : base(options)
         {
             
         }

@@ -11,7 +11,7 @@ using PictureGallery.Infrastructure.Persistence;
 
 namespace PictureGallery.Infrastructure.Migrations
 {
-    [DbContext(typeof(PictureGalleryDbContext))]
+    [DbContext(typeof(PictureDbContext))]
     [Migration("20231126113004_Init")]
     partial class Init
     {

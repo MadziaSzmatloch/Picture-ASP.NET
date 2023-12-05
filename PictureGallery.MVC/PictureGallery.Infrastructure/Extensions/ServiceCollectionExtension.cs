@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PictureGallery.Domain.Interfaces;
 using PictureGallery.Infrastructure.Persistence;
+using PictureGallery.Infrastructure.Repositories;
 using PictureGallery.Infrastructure.Seeders;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,11 @@ namespace PictureGallery.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
         {
-            services.AddDbContext<PictureGalleryDbContext>(options => options.UseSqlServer(
+            services.AddDbContext<PictureDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("PictureGallery")));
 
             services.AddScoped<PictureGallerySeeder>();
+            services.AddScoped<IPictureRepository, PictureRepository>();
         }
 
     }

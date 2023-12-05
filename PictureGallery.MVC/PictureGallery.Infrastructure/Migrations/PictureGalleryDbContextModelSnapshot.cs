@@ -10,7 +10,7 @@ using PictureGallery.Infrastructure.Persistence;
 
 namespace PictureGallery.Infrastructure.Migrations
 {
-    [DbContext(typeof(PictureGalleryDbContext))]
+    [DbContext(typeof(PictureDbContext))]
     partial class PictureGalleryDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PictureGallery.Infrastructure.Persistence;
 using PictureGallery.Infrastructure.Extensions;
 using PictureGallery.Infrastructure.Seeders;
+using PictureGallery.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAplication();
 
 var app = builder.Build();
 

@@ -9,9 +9,9 @@ namespace PictureGallery.Infrastructure.Seeders
 {
     public class PictureGallerySeeder
     {
-        private readonly PictureGalleryDbContext _dbContext;
+        private readonly PictureDbContext _dbContext;
 
-        public PictureGallerySeeder(PictureGalleryDbContext dbContext)
+        public PictureGallerySeeder(PictureDbContext dbContext)
         {
             _dbContext = dbContext;
         }
