@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,16 @@ namespace PictureGallery.Domain.Entities
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         public string EncodedTitle { get; private set; } = default!;
+        
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; } = default!;
+
         public void EncodeTitle() => EncodedTitle = Title.ToLower().Replace(" ", "-");
+        public void SetImageName()
+        {
+            ImageName = Path.GetFileNameWithoutExtension(ImageFile.FileName) + Path.GetExtension(ImageFile.FileName);
+        }
 
     }
 }

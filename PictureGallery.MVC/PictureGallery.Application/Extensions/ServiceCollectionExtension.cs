@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PictureGallery.Application.Mappings;
 using PictureGallery.Application.Services;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace PictureGallery.Application.Extensions
         public static void AddAplication(this IServiceCollection services)
         {
             services.AddScoped<IPictureService, PictureService>();
+
+            services.AddAutoMapper(typeof(PictureMappingProfile));
         }
     }
 }

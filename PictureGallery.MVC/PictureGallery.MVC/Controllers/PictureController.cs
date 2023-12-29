@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PictureGallery.Application.Picture;
 using PictureGallery.Application.Services;
 
 namespace PictureGallery.MVC.Controllers
@@ -18,8 +19,8 @@ namespace PictureGallery.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Domain.Entities.Picture picture)
-        {
+        public async Task<IActionResult> Create(PictureDto picture)
+         {
             await _pictureService.Create(picture);
             return RedirectToAction(nameof(Create)); //TODO: refactor
         }
