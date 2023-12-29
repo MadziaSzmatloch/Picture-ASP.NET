@@ -21,6 +21,10 @@ namespace PictureGallery.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PictureDto picture)
          {
+            if (!ModelState.IsValid)
+            {
+                return View(picture);
+            }
             await _pictureService.Create(picture);
             return RedirectToAction(nameof(Create)); //TODO: refactor
         }

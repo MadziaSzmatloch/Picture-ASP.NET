@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace PictureGallery.Infrastructure.Repositories
 {
@@ -32,5 +33,8 @@ namespace PictureGallery.Infrastructure.Repositories
 
             await _dbContext.SaveChangesAsync();
         }
+
+        public Task<Domain.Entities.Picture?> GetByTitle(string title)
+            => _dbContext.Pictures.FirstOrDefaultAsync(p => p.Title.ToLower() == title.ToLower());
     }
 }

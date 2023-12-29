@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using PictureGallery.Application.Mappings;
+using PictureGallery.Application.Picture;
 using PictureGallery.Application.Services;
 using System;
 using System.Collections.Generic;
@@ -16,6 +19,10 @@ namespace PictureGallery.Application.Extensions
             services.AddScoped<IPictureService, PictureService>();
 
             services.AddAutoMapper(typeof(PictureMappingProfile));
+
+            services.AddValidatorsFromAssemblyContaining<PictureDtoValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 }

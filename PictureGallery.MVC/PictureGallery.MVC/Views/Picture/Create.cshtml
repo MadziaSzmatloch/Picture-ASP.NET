@@ -8,18 +8,21 @@
     <div class="col-md-4">
         <form action="/Picture/Create" method="post" enctype="multipart/form-data">
             <div class="form-group mb-3">
-                <label class="control-label" for="Title">Title</label>
-                <input class="form-control" type="text" id="Title" asp-for="Title" />
+                <label class="control-label" asp-for="Title">Title</label>
+                <input class="form-control" type="text" asp-for="Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" for="Description">Description</label>
-                <input class="form-control" type="text" id="Description" asp-for="Description" />
+                <label class="control-label" asp-for="Description">Description</label>
+                <input class="form-control" type="text" asp-for="Description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" for="file">Choose Image</label>
-                <input class="form-control" type="file" id="file" accept="image/*" asp-for="ImageFile" />
+                <label class="control-label" asp-for="ImageFile">Choose Image</label>
+                <input class="form-control" type="file" accept="image/*" asp-for="ImageFile" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
@@ -28,3 +31,10 @@
         </form>
     </div>
 </div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

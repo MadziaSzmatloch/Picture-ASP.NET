@@ -9,5 +9,6 @@ namespace PictureGallery.Domain.Interfaces
     public interface IPictureRepository
     {
         Task Create(Domain.Entities.Picture picture);
+        Task<Domain.Entities.Picture?> GetByTitle(string title);
     }
 }
