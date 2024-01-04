@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PictureGallery.Application.Picture.Commands.CreatePicture;
 using PictureGallery.Application.Picture.Queries.GetAllPicture;
+using PictureGallery.Application.Picture.Queries.GetPictureByEncodedName;
 
 namespace PictureGallery.MVC.Controllers
 {
@@ -23,6 +24,13 @@ namespace PictureGallery.MVC.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [Route("Picture/{encodedTitle}/Details")]
+        public async Task<IActionResult> Details(string encodedTitle)
+        {
+            var picture = await _mediator.Send(new GetPictureByEncodedTitleQuery(encodedTitle));
+            return View(picture);
         }
 
         [HttpPost]

@@ -39,6 +39,9 @@ namespace PictureGallery.Infrastructure.Repositories
             return await _dbContext.Pictures.ToListAsync();
         }
 
+        public async Task<Picture> GetByEncodedTitle(string encodedTitle)
+         => await _dbContext.Pictures.FirstAsync(c => c.EncodedTitle == encodedTitle);
+
         public Task<Domain.Entities.Picture?> GetByTitle(string title)
             => _dbContext.Pictures.FirstOrDefaultAsync(p => p.Title.ToLower() == title.ToLower());
     }
