@@ -12,8 +12,7 @@ namespace PictureGallery.Application.Picture
         public string? Title { get; set; } = default!;
         public string? Description { get; set; }
         public IFormFile? ImageFile { get; set; } = default!;
-
-        public string? EncodedName { get; set; }
+        public string? EncodedTitle { get; set; }
 
     }
 }

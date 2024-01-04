@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PictureGallery.Application.Picture
+namespace PictureGallery.Application.Picture.Commands.CreatePicture
 {
-    public class PictureDtoValidator : AbstractValidator<PictureDto>
+    public class CreatePictureCommandValidator : AbstractValidator<CreatePictureCommand>
     {
-        public PictureDtoValidator(IPictureRepository repository) 
+        public CreatePictureCommandValidator(IPictureRepository repository)
         {
             RuleFor(c => c.Title)
                 .NotEmpty().WithMessage("Title is required")

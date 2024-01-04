@@ -34,6 +34,11 @@ namespace PictureGallery.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Domain.Entities.Picture>> GetAll()
+        {
+            return await _dbContext.Pictures.ToListAsync();
+        }
+
         public Task<Domain.Entities.Picture?> GetByTitle(string title)
             => _dbContext.Pictures.FirstOrDefaultAsync(p => p.Title.ToLower() == title.ToLower());
     }

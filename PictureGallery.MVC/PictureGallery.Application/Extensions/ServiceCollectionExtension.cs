@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PictureGallery.Application.Mappings;
-using PictureGallery.Application.Picture;
-using PictureGallery.Application.Services;
+using PictureGallery.Application.Picture.Commands.CreatePicture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +16,11 @@ namespace PictureGallery.Application.Extensions
     {
         public static void AddAplication(this IServiceCollection services)
         {
-            services.AddScoped<IPictureService, PictureService>();
+            services.AddMediatR(typeof(CreatePictureCommand));
 
             services.AddAutoMapper(typeof(PictureMappingProfile));
 
-            services.AddValidatorsFromAssemblyContaining<PictureDtoValidator>()
+            services.AddValidatorsFromAssemblyContaining<CreatePictureCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
         }

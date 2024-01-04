@@ -13,6 +13,8 @@ namespace PictureGallery.Application.Mappings
         public PictureMappingProfile() 
         {
             CreateMap<PictureDto, Domain.Entities.Picture>();
+
+            CreateMap<Domain.Entities.Picture, PictureDto>();
         }
     }
 }

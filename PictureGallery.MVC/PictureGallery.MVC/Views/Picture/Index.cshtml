@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PictureGallery.Domain.Entities.Picture>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Home</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Create New</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="card m-3" style="width: 22rem;">
+            <div class="card-body">
+                <img style="width: 18rem;" src="~/images/@item.ImageName" />
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Description</p>
+                <a asp-controller="CarWorkshop" asp-action="Details" asp-route-encodedName="@item.EncodedTitle" class="btn btn-primary">Details</a>
+                <a asp-controller="CarWorkshop" asp-action="Edit" asp-route-encodedName="@item.EncodedTitle" class="btn btn-outline-secondary">Edit</a>
+
+            </div>
+        </div>
+    }
+</div>

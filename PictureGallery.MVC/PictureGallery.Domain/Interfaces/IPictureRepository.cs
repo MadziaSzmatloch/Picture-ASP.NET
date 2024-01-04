@@ -10,5 +10,6 @@ namespace PictureGallery.Domain.Interfaces
     {
         Task Create(Domain.Entities.Picture picture);
         Task<Domain.Entities.Picture?> GetByTitle(string title);
+        Task<IEnumerable<Domain.Entities.Picture>> GetAll();
     }
 }

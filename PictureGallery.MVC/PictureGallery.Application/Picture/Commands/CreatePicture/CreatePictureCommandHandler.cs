@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PictureGallery.Application.Picture;
+using MediatR;
 using PictureGallery.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,25 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PictureGallery.Application.Services
+namespace PictureGallery.Application.Picture.Commands.CreatePicture
 {
-    public class PictureService : IPictureService
+    public class CreatePictureCommandHandler : IRequestHandler<CreatePictureCommand>
     {
         private readonly IPictureRepository _pictureRepository;
         private readonly IMapper _mapper;
-
-        public PictureService(IPictureRepository pictureRepository, IMapper mapper)
+        public CreatePictureCommandHandler(IPictureRepository pictureRepository, IMapper mapper)
         {
             _pictureRepository = pictureRepository;
             _mapper = mapper;
         }
-
-        public async Task Create(PictureDto pictureDto)
+        public async Task<Unit> Handle(CreatePictureCommand request, CancellationToken cancellationToken)
         {
-            var picture = _mapper.Map<Domain.Entities.Picture>(pictureDto);
+            var picture = _mapper.Map<Domain.Entities.Picture>(request);
             picture.EncodeTitle();
             picture.SetImageName();
+
             await _pictureRepository.Create(picture);
+
+            return Unit.Value;
         }
     }
 }
