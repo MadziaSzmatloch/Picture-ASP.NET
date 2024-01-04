@@ -21,6 +21,10 @@ namespace PictureGallery.Infrastructure.Repositories
             _dbContext = dbContext;
             _hostEnvironment = hostEnvironment;
         }
+
+        public Task Commit()
+         => _dbContext.SaveChangesAsync();
+
         public async Task Create(Picture picture)
         {
             _dbContext.Add(picture);
@@ -35,9 +39,7 @@ namespace PictureGallery.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Domain.Entities.Picture>> GetAll()
-        {
-            return await _dbContext.Pictures.ToListAsync();
-        }
+         =>  await _dbContext.Pictures.ToListAsync();
 
         public async Task<Picture> GetByEncodedTitle(string encodedTitle)
          => await _dbContext.Pictures.FirstAsync(c => c.EncodedTitle == encodedTitle);

@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PictureGallery.Application.Picture;
 using PictureGallery.Application.Picture.Commands.CreatePicture;
+using PictureGallery.Application.Picture.Commands.EditPicture;
 using PictureGallery.Application.Picture.Queries.GetAllPicture;
 using PictureGallery.Application.Picture.Queries.GetPictureByEncodedName;
 
@@ -9,10 +12,12 @@ namespace PictureGallery.MVC.Controllers
     public class PictureController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public PictureController(IMediator mediator)
+        public PictureController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -33,9 +38,30 @@ namespace PictureGallery.MVC.Controllers
             return View(picture);
         }
 
+        [Route("Picture/{encodedTitle}/Edit")]
+        public async Task<IActionResult> Edit(string encodedTitle)
+        {
+            var picture = await _mediator.Send(new GetPictureByEncodedTitleQuery(encodedTitle));
+            //var dto = _mapper.Map<PictureDto>(picture);
+            EditPictureCommand model = _mapper.Map<EditPictureCommand>(picture);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Picture/{encodedTitle}/Edit")]
+        public async Task<IActionResult> Edit(string encodedTitle, EditPictureCommand command)
+         {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreatePictureCommand command)
-         {
+        {
             if (!ModelState.IsValid)
             {
                 return View(command);

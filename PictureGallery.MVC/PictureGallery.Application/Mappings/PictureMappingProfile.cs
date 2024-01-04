@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PictureGallery.Application.Picture;
+using PictureGallery.Application.Picture.Commands.EditPicture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace PictureGallery.Application.Mappings
             CreateMap<PictureDto, Domain.Entities.Picture>();
 
             CreateMap<Domain.Entities.Picture, PictureDto>();
+
+            CreateMap<Domain.Entities.Picture, EditPictureCommand>();
         }
     }
 }

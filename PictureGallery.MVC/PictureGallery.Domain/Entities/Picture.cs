@@ -22,10 +22,14 @@ namespace PictureGallery.Domain.Entities
         [NotMapped]
         public IFormFile ImageFile { get; set; } = default!;
 
-        public void EncodeTitle() => EncodedTitle = Title.ToLower().Replace(" ", "-");
+        public void EncodeTitle()
+        {
+            var name = Path.GetFileNameWithoutExtension(ImageFile.FileName) + DateTime.Now.ToString("yymmssfff");
+            EncodedTitle = name.ToLower().Replace(" ", "-");
+        }
         public void SetImageName()
         {
-            ImageName = Path.GetFileNameWithoutExtension(ImageFile.FileName) + Path.GetExtension(ImageFile.FileName);
+            ImageName = Path.GetFileNameWithoutExtension(ImageFile.FileName) + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(ImageFile.FileName);
         }
 
     }
