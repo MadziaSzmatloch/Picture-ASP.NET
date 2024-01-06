@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PictureGallery.Domain.Interfaces;
@@ -19,6 +20,9 @@ namespace PictureGallery.Infrastructure.Extensions
         {
             services.AddDbContext<PictureDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("PictureGallery")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<PictureDbContext>();
 
             services.AddScoped<PictureGallerySeeder>();
             services.AddScoped<IPictureRepository, PictureRepository>();

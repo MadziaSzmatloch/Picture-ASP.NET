@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PictureGallery.Application.Picture;
 using PictureGallery.Application.Picture.Commands.CreatePicture;
@@ -24,11 +25,6 @@ namespace PictureGallery.MVC.Controllers
         {
             var pictures = await _mediator.Send(new GetAllPictureQuery());
             return View(pictures);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
         }
 
         [Route("Picture/{encodedTitle}/Details")]
@@ -59,7 +55,14 @@ namespace PictureGallery.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreatePictureCommand command)
         {
             if (!ModelState.IsValid)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +19,8 @@ namespace PictureGallery.Domain.Entities
 
         public string EncodedTitle { get; private set; } = default!;
         
+        public string? CreatedById { get; set; }
+        public IdentityUser? CreatedBy { get; set; }
 
         [NotMapped]
         public IFormFile ImageFile { get; set; } = default!;

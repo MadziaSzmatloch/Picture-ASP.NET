@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
+using CarWorkshop.Application.ApplicationUser;
 using MediatR;
 using PictureGallery.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PictureGallery.Application.Picture.Commands.CreatePicture
 {
@@ -13,16 +9,21 @@ namespace PictureGallery.Application.Picture.Commands.CreatePicture
     {
         private readonly IPictureRepository _pictureRepository;
         private readonly IMapper _mapper;
-        public CreatePictureCommandHandler(IPictureRepository pictureRepository, IMapper mapper)
+        private readonly IUserContext _userContext;
+
+        public CreatePictureCommandHandler(IPictureRepository pictureRepository, IMapper mapper, IUserContext userContext)
         {
             _pictureRepository = pictureRepository;
             _mapper = mapper;
+            _userContext = userContext;
         }
         public async Task<Unit> Handle(CreatePictureCommand request, CancellationToken cancellationToken)
         {
             var picture = _mapper.Map<Domain.Entities.Picture>(request);
             picture.EncodeTitle();
             picture.SetImageName();
+
+            picture.CreatedById = _userContext.GetCurrentUser().Id;
 
             await _pictureRepository.Create(picture);
 

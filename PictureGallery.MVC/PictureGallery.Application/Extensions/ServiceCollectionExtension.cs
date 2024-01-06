@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using CarWorkshop.Application.ApplicationUser;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace PictureGallery.Application.Extensions
     {
         public static void AddAplication(this IServiceCollection services)
         {
+            services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(CreatePictureCommand));
 
             services.AddAutoMapper(typeof(PictureMappingProfile));
