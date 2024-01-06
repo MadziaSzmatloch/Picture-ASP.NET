@@ -7,31 +7,56 @@
 <h1>@Model.Title Details</h1>
 
 <div>
-    <h4>Picture</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <img style="width: 18rem;" src="~/images/@Model.ImageName" />
+        <div class="details-property-container">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+        </div>
+        <div class="details-property-container">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </div>
+        <div class="details-property-container">
+            <dt class="col-sm-2">
+                Create Date
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+        </div>
+        
+
+        <a href="~/images/@Model.ImageName" data-lightbox="image-gallery" data-title="@Model.Title">
+            <img class="details-img" src="~/images/@Model.ImageName" />
+        </a>
+        @* <img class="details-img" src="~/images/@Model.ImageName" /> *@
     </dl>
 </div>
 <div>
     <a asp-controller="Picture" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle" class="btn btn-outline-secondary">Edit</a>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
 </div>
+
+<style>
+    .details-property-container {
+        display: flex;
+        flex-direction: row;
+        height: 30px;
+    }
+    .details-img {
+        height: 30rem;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        object-fit: cover;
+        width: auto;
+    }
+</style>
