@@ -38,6 +38,19 @@ namespace PictureGallery.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task Delete(Picture picture)
+        {
+            _dbContext.Pictures.Remove(picture);
+
+            string path = Path.Combine(_hostEnvironment.WebRootPath + "/images/", picture.ImageName);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Domain.Entities.Picture>> GetAll()
          =>  await _dbContext.Pictures.ToListAsync();
 

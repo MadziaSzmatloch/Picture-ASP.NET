@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PictureGallery.Application.Picture.Commands.EditPicture
 {
-    public class EditPictureCommandValidator : AbstractValidator<EditPictureCommand>
+    public class DeletePictureCommandValidator : AbstractValidator<EditPictureCommand>
     {
-        public EditPictureCommandValidator(IPictureRepository repository)
+        public DeletePictureCommandValidator(IPictureRepository repository)
         {
             RuleFor(c => c.Title)
                 .NotEmpty().WithMessage("Title is required")

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PictureGallery.Application.ApplicationUser;
+using PictureGallery.Domain.Entities;
 using PictureGallery.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PictureGallery.Application.Picture.Commands.EditPicture
+namespace PictureGallery.Application.Picture.Commands.DeletePicture
 {
-    public class DeletePictureCommandHandler : IRequestHandler<EditPictureCommand>
+    public class DeletePictureCommandHandler : IRequestHandler<DeletePictureCommand>
     {
         private readonly IPictureRepository _repository;
         private readonly IUserContext _userContext;
@@ -19,24 +20,20 @@ namespace PictureGallery.Application.Picture.Commands.EditPicture
             _repository = repository;
             _userContext = userContext;
         }
-        public async Task<Unit> Handle(EditPictureCommand request, CancellationToken cancellationToken)
+
+        public async Task<Unit> Handle(DeletePictureCommand request, CancellationToken cancellationToken)
         {
-            var picture = await _repository.GetByEncodedTitle(request.EncodedTitle);
+            var pictureToDelete = await _repository.GetByEncodedTitle(request.EncodedTitle);
 
             var user = _userContext.GetCurrentUser();
-            bool isEditable = user != null && picture.CreatedById == user.Id;
+            bool isEditable = user != null && pictureToDelete.CreatedById == user.Id;
             if (!isEditable)
             {
                 return Unit.Value;
             }
 
-            picture.Title = request.Title;
-            picture.Description = request.Description;
-
-            await _repository.Commit();
-
+            await _repository.Delete(pictureToDelete);
             return Unit.Value;
-
         }
     }
 }

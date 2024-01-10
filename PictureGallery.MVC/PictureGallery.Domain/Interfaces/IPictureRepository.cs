@@ -13,5 +13,6 @@ namespace PictureGallery.Domain.Interfaces
         Task<IEnumerable<Domain.Entities.Picture>> GetAll();
         Task<Domain.Entities.Picture> GetByEncodedTitle(string encodedTitle);
         Task Commit();
+        Task Delete(Domain.Entities.Picture picture);
     }
 }

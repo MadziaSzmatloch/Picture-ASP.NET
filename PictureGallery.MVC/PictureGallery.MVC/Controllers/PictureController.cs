@@ -10,6 +10,8 @@ using PictureGallery.Application.Picture.Queries.GetAllPicture;
 using PictureGallery.Application.Picture.Queries.GetPictureByEncodedName;
 using PictureGallery.Application;
 using PictureGallery.Domain.Entities;
+using PictureGallery.Domain.Interfaces;
+using PictureGallery.Application.Picture.Commands.DeletePicture;
 
 namespace PictureGallery.MVC.Controllers
 {
@@ -95,6 +97,14 @@ namespace PictureGallery.MVC.Controllers
             {
                 return View(command);
             }
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(DeletePictureCommand command)
+        {
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }
