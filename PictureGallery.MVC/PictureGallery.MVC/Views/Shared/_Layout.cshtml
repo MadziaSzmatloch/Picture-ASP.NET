@@ -31,10 +31,10 @@
                             <a class="nav-link text-dark @(controller == "Home" && action == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark  @(controller == "Home" && action == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark @(controller == "Picture" && action == "Index" ? "active" : "")" asp-area="" asp-controller="Picture" asp-action="Index">All Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark @(controller == "Picture" && action == "Index" ? "active" : "")" asp-area="" asp-controller="Picture" asp-action="Index">All Photos</a>
+                            <a class="nav-link text-dark @(controller == "Picture" && action == "UsersPictures" ? "active" : "")" asp-area="" asp-controller="Picture" asp-action="UsersPictures">Your Photos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark  @(controller == "Picture" && action == "Create" ? "active" : "")" asp-area="" asp-controller="Picture" asp-action="Create">Create New</a>

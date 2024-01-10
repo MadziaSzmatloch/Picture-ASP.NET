@@ -45,10 +45,7 @@
 <div class="details-buttons-container">
     @if (Model.User != null && Model.Picture.CreatedById == Model.User.Id)
     {
-    <a asp-controller="Picture" asp-action="Edit" asp-route-encodedTitle="@Model.Picture.EncodedTitle" class="btn btn-outline-secondary" style="margin-right: 5px">Edit</a>
-    }
-    @if (Model.User != null && Model.Picture.CreatedById == Model.User.Id)
-    {
+        <a asp-controller="Picture" asp-action="Edit" asp-route-encodedTitle="@Model.Picture.EncodedTitle" class="btn btn-outline-secondary" style="margin-right: 5px">Edit</a>
         <form asp-controller="Picture" asp-action="Delete" asp-route-encodedTitle="@Model.Picture.EncodedTitle" method="post" onsubmit="return confirm('Are you sure you want to delete this picture?');">
             <button type="submit" class="btn btn-outline-secondary">Delete</button>
         </form>

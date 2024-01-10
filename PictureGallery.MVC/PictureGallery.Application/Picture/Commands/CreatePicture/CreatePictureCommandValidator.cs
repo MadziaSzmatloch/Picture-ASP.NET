@@ -26,7 +26,7 @@ namespace PictureGallery.Application.Picture.Commands.CreatePicture
                 //});
             RuleFor(c => c.Description)
                 .MinimumLength(2).WithMessage("Description must not be shorter than 2 characters")
-                .MaximumLength(100).WithMessage("Description must not be longer than 100 characters");
+                .MaximumLength(30).WithMessage("Description must not be longer than 30 characters");
             RuleFor(c => c.ImageFile)
                 .NotEmpty().WithMessage("Image file is required");
         }

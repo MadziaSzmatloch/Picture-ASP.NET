@@ -41,6 +41,21 @@ namespace PictureGallery.MVC.Controllers
             return View(ViewModel);
         }
 
+
+        [Authorize]
+        public async Task<IActionResult> UsersPictures()
+        {
+            var pictures = await _mediator.Send(new GetAllPictureQuery());
+            var currentUser = _userContext.GetCurrentUser();
+
+            var ViewModel = new PictureListViewModel
+            {
+                Pictures = pictures.Where(sc => sc.CreatedById == currentUser.Id),
+                User = currentUser
+            };
+            return View(ViewModel);
+        }
+
         [Route("Picture/{encodedTitle}/Details")]
         public async Task<IActionResult> Details(string encodedTitle)
         {

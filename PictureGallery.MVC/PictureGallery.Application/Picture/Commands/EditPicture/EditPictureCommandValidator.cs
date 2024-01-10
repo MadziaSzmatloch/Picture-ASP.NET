@@ -18,7 +18,7 @@ namespace PictureGallery.Application.Picture.Commands.EditPicture
                 .MaximumLength(20).WithMessage("Title must not be longer than 20 characters");
             RuleFor(c => c.Description)
                 .MinimumLength(2).WithMessage("Description must not be shorter than 2 characters")
-                .MaximumLength(100).WithMessage("Description must not be longer than 100 characters");
+                .MaximumLength(30).WithMessage("Description must not be longer than 30 characters");
         }
     }
 }
