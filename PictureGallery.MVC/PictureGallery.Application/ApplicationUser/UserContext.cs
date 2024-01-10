@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.ApplicationUser
+namespace PictureGallery.Application.ApplicationUser
 {
     public interface IUserContext
     {

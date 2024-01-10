@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PictureGallery.Domain.Entities.Picture>
+﻿@using PictureGallery.Application
+@model PictureListViewModel
 
 @{
     ViewData["Title"] = "Home";
@@ -11,14 +12,17 @@
 </p>
 
 <div class="row">
-    @foreach (var item in Model) {
+    @foreach (var item in Model.Pictures) {
         <div class="card m-3" style="width: 22rem;">
             <div class="card-body">
                 <img class="list-img" src="~/images/@item.ImageName"/>
                 <h5 class="card-title">@item.Title</h5>
                 <p class="card-text">@item.Description</p>
                 <a asp-controller="Picture" asp-action="Details" asp-route-encodedTitle="@item.EncodedTitle" class="btn btn-primary">Details</a>
-                <a asp-controller="Picture" asp-action="Edit" asp-route-encodedTitle="@item.EncodedTitle" class="btn btn-outline-secondary" style="margin-left: 5px">Edit</a>
+                @if (Model.User != null && @item.CreatedById == Model.User.Id)
+                {
+                    <a asp-controller="Picture" asp-action="Edit" asp-route-encodedTitle="@item.EncodedTitle" class="btn btn-outline-secondary" style="margin-left: 5px">Edit</a>
+                }
 
             </div>
         </div>

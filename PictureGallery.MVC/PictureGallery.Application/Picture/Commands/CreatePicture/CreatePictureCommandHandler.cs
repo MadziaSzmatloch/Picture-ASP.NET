@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CarWorkshop.Application.ApplicationUser;
+using PictureGallery.Application.ApplicationUser;
 using MediatR;
 using PictureGallery.Domain.Interfaces;
 

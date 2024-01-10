@@ -1,5 +1,5 @@
 ﻿
-namespace CarWorkshop.Application.ApplicationUser
+namespace PictureGallery.Application.ApplicationUser
 {
     public class CurrentUser
     {

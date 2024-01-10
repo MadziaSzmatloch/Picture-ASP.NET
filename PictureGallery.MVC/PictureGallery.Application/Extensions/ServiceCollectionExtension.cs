@@ -1,4 +1,4 @@
-﻿using CarWorkshop.Application.ApplicationUser;
+﻿using PictureGallery.Application.ApplicationUser;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -25,6 +25,7 @@ namespace PictureGallery.Application.Extensions
             services.AddValidatorsFromAssemblyContaining<CreatePictureCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
+
         }
     }
 }
