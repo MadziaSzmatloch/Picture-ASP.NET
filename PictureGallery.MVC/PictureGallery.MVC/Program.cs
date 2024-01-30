@@ -3,8 +3,14 @@ using PictureGallery.Infrastructure.Persistence;
 using PictureGallery.Infrastructure.Extensions;
 using PictureGallery.Infrastructure.Seeders;
 using PictureGallery.Application.Extensions;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("PictureDbContextConnection") ?? throw new InvalidOperationException("Connection string 'PictureDbContextConnection' not found.");
+
+//builder.Services.AddDbContext<PictureDbContext>(options => options.UseSqlServer(connectionString));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<PictureDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

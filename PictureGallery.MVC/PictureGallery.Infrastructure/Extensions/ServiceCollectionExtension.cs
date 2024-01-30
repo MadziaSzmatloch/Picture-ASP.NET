@@ -26,6 +26,7 @@ namespace PictureGallery.Infrastructure.Extensions
 
             services.AddScoped<PictureGallerySeeder>();
             services.AddScoped<IPictureRepository, PictureRepository>();
+
         }
 
     }

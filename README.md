@@ -2,7 +2,7 @@
 I have made this project in order to get to know ASP.NET CORE platform. I wanted to practice my proggraming skills
 and gain hands-on experience in building modern web applications using the ASP.NET Core MVC framework
 
-## Lessons Learned
+## What I Learned
 
 During this project, I got to know the MVC architecture. 
 I applied Clean Achritecture principles to enhance code organization, used the Mediator pattern and CQRS using the MediatR library. 
