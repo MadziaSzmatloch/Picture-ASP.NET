@@ -21,6 +21,9 @@ I used FluentValidation to validate incoming models and AutoMapper to efficientl
 ### Your Photos
 ![View!](/ApplicationImages/YourPhotos.jpg)
 
+### Searching
+![View!](/ApplicationImages/Filter.jpg)
+
 ### Details
 ![View!](/ApplicationImages/Details.jpg)
 
