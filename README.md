@@ -33,4 +33,5 @@ I used FluentValidation to validate incoming models and AutoMapper to efficientl
 ### Create
 ![View!](/ApplicationImages/Create.jpg)
 
-
+## Future implementation
+This app can be developed more in lots of ways. Some of my future plans are adding comments to pictures or searching by username.
