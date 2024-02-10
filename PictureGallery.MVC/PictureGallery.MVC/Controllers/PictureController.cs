@@ -28,16 +28,22 @@ namespace PictureGallery.MVC.Controllers
             _userContext = userContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var pictures = await _mediator.Send(new GetAllPictureQuery());
             var currentUser = _userContext.GetCurrentUser();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                pictures = pictures.Where(s => s.Title.ToLower()!.Contains(searchString));
+            }
 
             var ViewModel = new PictureListViewModel
             {
                 Pictures = pictures,
                 User = currentUser
             };
+
             return View(ViewModel);
         }
 

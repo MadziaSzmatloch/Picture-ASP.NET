@@ -11,10 +11,16 @@
     <a asp-action="Create" class="btn btn-secondary">Create New</a>
 </p>
 
-<div class="row">
+<form asp-controller="Picture" asp-action="Index" id="searchForm" method="get">
+    <p class="search-container">
+        Search: <input class="card title-filter" type="text" name="SearchString" oninput="filterPictures()" />
+    </p>
+</form>
+
+<div class="row" id="picturesContainer">
     @foreach (var item in Model.Pictures)
     {
-        <div class="card m-3" style="width: 22rem;">
+        <div class="card m-3" style="width: 22rem;" data-title="@item.Title.ToLower()">
             <div class="card-body">
                 <img class="list-img" src="~/images/@item.ImageName" />
                 <h5 class="card-title">@item.Title</h5>
@@ -45,4 +51,29 @@
     .card-text {
         height: 18px;
     }
+
+    .search-container {
+        display: flex;
+    }
+
+    .title-filter {
+        margin-left: 6px;
+    }
 </style>
+
+<script>
+    function filterPictures() {
+        console.log("aaaaaaaaaaaaaaaaaaaa")
+        var searchString = document.querySelector('#searchForm input[name="SearchString"]').value.toLowerCase();
+        var pictures = document.querySelectorAll('#picturesContainer .card');
+
+        pictures.forEach(function (picture) {
+            var title = picture.dataset.title;
+            if (title.includes(searchString)) {
+                picture.style.display = 'block';
+            } else {
+                picture.style.display = 'none';
+            }
+        });
+    }
+</script>
